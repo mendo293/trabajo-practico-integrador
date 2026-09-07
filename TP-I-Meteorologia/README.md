@@ -4,7 +4,7 @@
 
 - **Materia:** Programación I - Comisión 3 - Ingeniería Electrónica y Telecomunicaciones
 - **Fecha de Primera Entrega:** 31/08/2026
-- **Fecha de Segunda Entrega:** 07/09/2026
+- **Fecha de Segunda Entrega:** 14/09/2026
 - **Docente:** 
   - Linquiman Ventura, Lautaro Yamil
 - **Nombre del grupo:** 
