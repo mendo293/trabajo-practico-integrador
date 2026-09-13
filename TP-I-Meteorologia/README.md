@@ -15,9 +15,22 @@
 
 ---
 
-## Descripción
+## Descripción del Proyecto
+Este programa realiza la ingesta, validación y conversión de datos meteorológicos extraídos desde archivos de texto plano del Servicio Meteorológico Nacional (SMN) hacia un formato estructurado en JSON. 
 
-Este programa permite procesar archivos de datos provenientes del Servicio Meteorológico Nacional (SMN). Realiza la lectura, limpieza y validación línea por línea, separando los registros válidos de los inválidos y generando un archivo estructurado en formato `.json`.
+Permite depurar datos erróneos, registrar explicaciones de fallas y dejar la información limpia lista para ser utilizada.
+---
+
+## Estructura del Proyecto
+```text
+.
+├── adaptar_datos.py   # Programa principal.
+├── validaciones.py    # Programa de validaciones y parseo de datos.
+├── datos/
+│   ├── observaciones.txt   # Archivo de entrada .txt
+│   └── observaciones.json  # Archivo resultante generado .json
+└── README.md          # Descripción del proyecto
+```
 
 ---
 
