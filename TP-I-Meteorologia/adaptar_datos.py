@@ -1,5 +1,6 @@
+from datetime import datetime
 import json
-import os
+from pathlib import Path
 import sys
 
 from validaciones import validar_registro
@@ -53,10 +54,6 @@ def procesar_archivo_txt(ruta_entrada):
 
 def guardar_json_salida(datos, ruta_salida):
     try:
-        directorio = os.path.dirname(ruta_salida)
-        if directorio and not os.path.exists(directorio):
-            os.makedirs(directorio)
-
         with open(ruta_salida, "w") as archivo:
             json.dump(datos, archivo, indent=4, ensure_ascii=False)
 
@@ -74,8 +71,8 @@ def guardar_json_salida(datos, ruta_salida):
 
 def main():
     try:
-        ruta_entrada = sys.argv[1]
-        ruta_salida = sys.argv[2]
+        ruta_entrada = Path(sys.argv[1])
+        ruta_salida_dir = Path(sys.argv[2])
     except IndexError:
         print("Error: Cantidad de argumentos invalida.")
         print("\nUso esperado:")
@@ -85,10 +82,28 @@ def main():
         print("\nEjemplo:")
         print("  python adaptar_datos.py datos/observaciones.txt datos/observaciones.json")
         sys.exit(1)
+        
+    if not ruta_entrada.exists():
+        print(f"Error: La ruta de entrada '{ruta_entrada}' no existe.")
+        sys.exit(1)
+
+    if not ruta_entrada.is_file():
+        print(f"Error: La ruta de entrada '{ruta_entrada}' no es un archivo.")
+        sys.exit(1)
+    
+    if not ruta_salida_dir.exists():
+        print(f"Error: El directorio de salida '{ruta_salida_dir}' no existe.")
+        sys.exit(1)
+
+    if not ruta_salida_dir.is_dir():
+        print(
+            f"Error: La ruta de salida '{ruta_salida_dir}' no es un directorio."
+        )
+        sys.exit(1)
 
     print("--- Procesando Conversión TXT a JSON ---")
     print(f"Entrada: {ruta_entrada}")
-    print(f"Salida:  {ruta_salida}")
+    print(f"Salida:  {ruta_salida_dir}")
 
     registros_validos, registros_invalidos = procesar_archivo_txt(ruta_entrada)
     total_registros = len(registros_validos) + len(registros_invalidos)
@@ -103,8 +118,18 @@ def main():
         "registros_invalidos": registros_invalidos,
     }
 
-    guardar_json_salida(estructura_json, ruta_salida)
+    ahora = datetime.now()
+    nombre_json = f"{ruta_entrada.stem}.json"
+    ruta_archivo_json = ruta_salida_dir / nombre_json
 
+    if ruta_archivo_json.exists():
+        print(
+            f"Error: El archivo de salida ya existe y no se sobrescribirá: '{ruta_archivo_json}'"
+        )
+        sys.exit(1)
+
+    guardar_json_salida(estructura_json, ruta_archivo_json)
+    
     print("\n================ RESUMEN DEL PROCESAMIENTO ================")
     print(f"  Total de registros leídos   : {total_registros}")
     print(f"  Registros válidos procesados : {len(registros_validos)}")
