@@ -119,7 +119,7 @@ def main():
     }
 
     ahora = datetime.now()
-    nombre_json = f"{ruta_entrada.stem}.json"
+    nombre_json = ahora.strftime("mediciones-%Y%m%d-%H%M%S.json")
     ruta_archivo_json = ruta_salida_dir / nombre_json
 
     if ruta_archivo_json.exists():
