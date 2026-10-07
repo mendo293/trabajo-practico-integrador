@@ -1,10 +1,10 @@
-# TP Integrador 1 - Parte 1: Conversor de TXT a JSON (SMN)
+# TP Integrador 1 - Parte 2
 
 ## Información del Proyecto
 
 - **Materia:** Programación I - Comisión 3 - Ingeniería Electrónica y Telecomunicaciones
-- **Fecha de Primera Entrega:** 31/08/2026
-- **Fecha de Segunda Entrega:** 14/09/2026
+- **Fecha de Primera Entrega:** 07/10/2026
+- **Fecha de Segunda Entrega:** 14/10/2026
 - **Docente:** 
   - Linquiman Ventura, Lautaro Yamil
 - **Nombre del grupo:** 
@@ -15,28 +15,13 @@
 
 ---
 
-## Descripción del Proyecto
-Este programa realiza la ingesta, validación y conversión de datos meteorológicos extraídos desde archivos de texto plano del Servicio Meteorológico Nacional (SMN) hacia un formato estructurado en JSON. 
+# Etapa 1 - Procesamiento de Datos Meteorológicos
 
-Permite depurar datos erróneos, registrar explicaciones de fallas y dejar la información limpia lista para ser utilizada.
----
+Este módulo procesa las observaciones meteorológicas en formato JSON (generadas en la Parte 1 del T.P.). En esta etapa del proyecto implementamos el procesamiento, análisis estadístico y visualización gráfica de datos meteorológicos obtenidos en formato JSON (generadas en la Parte 1 del T.P.), con el procesamiento mediante estructuras nativas de Python: listas y diccionarios, sin el uso de librerías de análisis de datos como Pandas.
 
-## Estructura del Proyecto
-```text
-.
-├── adaptar_datos.py   # Programa principal.
-├── validaciones.py    # Programa de validaciones y parseo de datos.
-├── datos/
-│   ├── observaciones.txt   # Archivo de entrada .txt
-│   └── observaciones.json  # Archivo resultante generado .json
-└── README.md          # Descripción del proyecto
-```
+## Ejecución desde la Terminal
 
----
-
-## Forma de Ejecución
-
-El programa se ejecuta desde la terminal pasando como primer argumento la ruta del archivo `.txt` de origen y como segundo argumento la ruta de destino del archivo `.json`.
+Posicionarse en la carpeta `app_web` y ejecutar:
 
 ```bash
-python adaptar_datos.py datos/observaciones.txt datos/observaciones.json
+python procesar_datos.py datos/observaciones.json "AEROPARQUE AERO" temperatura

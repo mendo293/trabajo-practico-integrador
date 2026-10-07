@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import sys
 
-from validaciones import validar_registro
+from conversor.validaciones import validar_registro
 
 
 def es_linea_encabezado(linea):
