@@ -25,3 +25,16 @@ Posicionarse en la carpeta `app_web` y ejecutar:
 
 ```bash
 python procesar_datos.py datos/observaciones.json "AEROPARQUE AERO" temperatura
+```
+
+# Etapa 2 - Aplicación Web Meteorológica
+Interfaz web interactiva que reutiliza la lógica de procesamiento de la Etapa 1 (carga, filtrado, estadísticas nativas con listas/diccionarios y gráficos Matplotlib) e integra Pandas exclusivamente para visualizar la tabla de datos dinámica (st.dataframe).
+
+## Requisitos e Instalación
+
+Instalar las dependencias listadas en `requirements.txt`
+
+## Ejecución desde la Terminal
+
+```bash
+streamlit run app.py -- datos/observaciones.json
